@@ -1,0 +1,174 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<title>Using Redux with React</title>
+
+		<link rel="stylesheet" href="css/reveal.css">
+		<link rel="stylesheet" href="css/theme/moon.css">
+
+		<!-- Theme used for syntax highlighting of code -->
+		<link rel="stylesheet" href="lib/css/zenburn.css">
+		<link rel="stylesheet" href="css/font-awesome.min.css">
+	</head>
+	<body>
+		<div class="reveal">
+			<div class="slides">
+				<section>
+					<h2>Using Redux with React</h2>
+					<h3>By: Alex Sears</h3>
+					<p><i class="fa fa-twitter" aria-hidden="true"></i> searsaw<br><i class="fa fa-github" aria-hidden="true"></i> searsaw</p>
+				</section>
+
+				<section>
+					<section>
+						<h2>Redux is a predictable state container for JavaScript apps.</h2>
+					</section>
+
+					<section>
+						<p>It puts all your state into one place and provides a mechanism to subscribe to changes in the state and to update that state.</p>
+
+						<p>This makes managing the state of your application straightforward.</p>
+					</section>
+				</section>
+
+				<section>
+					<section>
+						<h1>Definitions</h1>
+					</section>
+
+					<section>
+						<h2>State</h2>
+						<p>A container where all the data for your application is stored. It is represented as a plain JavaScript object.</p>
+					</section>
+
+					<section>
+						<h2>Action</h2>
+						<p>A JavaScript object that represents some change that needs to happen to the state. Updating the user status, changing the currently showing recipes, etc.</p>
+					</section>
+
+					<section>
+						<h2>Reducer</h2>
+						<p>A simple JavaScript function that is passed the current state (or part of the state) and the current action and returns the new piece of state. It is its job to decide what happens to the state for each action.</p>
+					</section>
+
+					<section>
+						<h2>View</h2>
+						<p>The elements that are rendered to the screen. Essentially, what you see!</p>
+					</section>
+
+					<section>
+						<h2>Dispatch</h2>
+						<p>A function that sends an action to the state to be "processed."</p>
+					</section>
+
+					<section>
+						<h2>Subscribe</h2>
+						<p>To listen for a change on the state and do something when it does.</p>
+					</section>
+				</section>
+
+
+				<section>
+					<section>
+						<h1>How it works</h1>
+					</section>
+
+					<section>
+						<h3>Subscribe to the state</h3>
+						<p>First thing is to render our view and subscribe to changes in the state. When something changes, we will be told about it!</p>
+					</section>
+
+					<section>
+						<h3>Cause an action</h3>
+						<p>There needs to be some way for the user to cause something to change on the page. This could be as simple as clicking a button. This button would then cause an action to be sent to state to tell it to change.</p>
+					</section>
+
+					<section>
+						<h3>Dispatch an action</h3>
+						<p>When you want something to change in the state, we need to dispatch an action to tell the state that it's time to update!</p>
+						<p>The action tells the state what action is occuring and provides the data it needs to complete the action.</p>
+					</section>
+
+					<section>
+						<h3>Running the reducers</h3>
+						<p>The state passes this action off to its main reducer which in turn passes it to all the reducers that it knows about. Each reducer is passed the piece of state it cares about and the action that is happening.</p>
+						<p>Once each reducer is done, it passes back the new state, which is combined together into our new complete piece of state.</p>
+					</section>
+
+					<section>
+						<h3>Telling our subscribers</h3>
+						<p>Once the state is updated, it will then tell all its subscribers that something changed and will give them all this new state.</p>
+						<p>These subscribers are our views. The views take the state and update themselves with the new values (if there are any).</p>
+					</section>
+				</section>
+
+				<section>
+					<section>
+						<p>This can be a real pain to set up in a React application.</p>
+						<p>Managing all the subscribers and making sure every component can access the redux store is not easy in large applications.</p>
+					</section>
+
+					<section>
+						<h1>Luckily there is a package that does this for us!</h1>
+					</section>
+
+					<section>
+						<h2>Enter react-redux...</h2>
+						<p>It exposes a <code>Provider</code> component that wraps our application and makes the store available to all components that are <code>connect</code>ed.</p>
+					</section>
+
+					<section>
+						<h3>It makes working with the redux store a cinch!</h3>
+					</section>
+				</section>
+
+				<section>
+					<section>
+						<h2>Alright, dude. What are we building?</h2>
+					</section>
+
+					<section>
+						<h3>We are going to build a simple application using the Star Wars API (http://swapi.co)</h3>
+						<p>We will be able to see a list of characters from Star Wars. We will then make it so more data is grabbed we click on one them.</p>
+					</section>
+
+					<section>
+						<img src="images/application_screen.png" >
+					</section>
+
+					<section>
+						<h1>Technology</h1>
+						<ul>
+							<li class="fragment">react</li>
+							<li class="fragment">react-dom</li>
+							<li class="fragment">redux</li>
+							<li class="fragment">react-redux</li>
+							<li class="fragment">redux-thunk</li>
+							<li class="fragment">webpack</li>
+							<li class="fragment">webpack-dev-server</li>
+							<li class="fragment">babel</li>
+						</ul>
+					</section>
+				</section>
+			</div>
+		</div>
+
+		<script src="lib/js/head.min.js"></script>
+		<script src="js/reveal.js"></script>
+
+		<script>
+			// More info https://github.com/hakimel/reveal.js#configuration
+			Reveal.initialize({
+				history: true,
+
+				// More info https://github.com/hakimel/reveal.js#dependencies
+				dependencies: [
+					{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } }
+				]
+			});
+		</script>
+	</body>
+</html>
