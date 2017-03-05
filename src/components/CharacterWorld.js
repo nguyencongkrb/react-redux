@@ -5,7 +5,7 @@ const isKnown = text => text && text !== 'unknown';
 
 const CharacterWorld = ({ world }) =>
   <div id='character-world' className='col-md-6'>
-    <h1>World</h1>
+    <h1>World Cong</h1>
     {isKnown(world.name) && <p>Name: {world.name}</p>}
     {isKnown(world.population) && <p>Population: {world.population}</p>}
     {isKnown(world.diameter) && <p>Diameter: {world.diameter}km</p>}
